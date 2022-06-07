@@ -29,7 +29,7 @@ contract Exchange is ERC20 {
         }else {
             uint ethReserve = ethBalance - msg.value;
             uint cryptoDevTokenAmount = (msg.value * cryptoDevTokenReserve)/(ethReserve);
-            require(_amount >= cryptoDevTokenReserve, "Amount of tokens sent is less than the minimum");
+            require(_amount >= cryptoDevTokenAmount, "Amount of tokens sent is less than the minimum");
             cryptoDevToken.transferFrom(msg.sender, address(this), cryptoDevTokenAmount);
             liquidity = (totalSupply() * msg.value) / ethReserve;
             _mint(msg.sender, liquidity); 
